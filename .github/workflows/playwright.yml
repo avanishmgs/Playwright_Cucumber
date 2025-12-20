@@ -26,8 +26,8 @@ jobs:
       - name: Install Playwright browsers
         run: npx playwright install --with-deps
 
-      - name: Run Playwright tests
-        run: npx playwright test
+      - name: Run Cucumber Tests
+        run: npm test
 
       - name: Upload Playwright Report
         if: always()
