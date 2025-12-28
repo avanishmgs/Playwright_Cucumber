@@ -6,12 +6,11 @@ on:
     - cron: '30 2 * * *'
 
   workflow_dispatch:
-  inputs:
+    inputs:
       tags:
         description: 'Cucumber tags to run (e.g. @smoke or @regression or @greenkart)'
         required: true
         default: '@greenkart'
-
 
 jobs:
   run-playwright-cucumber-tests:
@@ -19,6 +18,7 @@ jobs:
 
     env:
       SUITE_NAME: PlaywrightCucumberTest
+      TAGS: ${{ github.event.inputs.tags || '@greenkart' }}
 
     steps:
       - name: Checkout repository
@@ -35,10 +35,13 @@ jobs:
       - name: Install Playwright browsers
         run: npx playwright install --with-deps
 
-      - name: Run Cucumber Tests
+      - name: Run Cucumber Tests by Tags
         run: |
           echo "Running Suite: $SUITE_NAME"
-          npm test
+          echo "Running Tags: $TAGS"
+          npx cucumber-js \
+            --tags "$TAGS" \
+            src/test/features
 
       - name: Upload Cucumber Report
         if: always()
