@@ -1,6 +1,6 @@
 Feature: login page validation
 
-  @regression
+  @regression @greenkart
   Scenario: login page with valid credentials
     Given providing valid url for login
     When providing valid username and password
