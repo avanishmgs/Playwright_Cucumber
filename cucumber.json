@@ -1,6 +1,6 @@
 {
     "default":{
-        "tags": "@smoke",
+        "tags": "@greenkart",
         "formateOptions":{
             "snippentInterface": "async-await"
         },
@@ -20,7 +20,7 @@
             "html:test-result/cucumber-report.html",
             "json:test-result/cucumber-report.json"
         ],
-        "parallel": 2
+        "parallel": 1
     },
     "rerun":{
         "formateOptions":{
@@ -39,6 +39,6 @@
             "html:test-result/cucumber-report.html",
             "json:test-result/cucumber-report.json"
         ],
-        "parallel": 2
+        "parallel": 1
     }
 }
