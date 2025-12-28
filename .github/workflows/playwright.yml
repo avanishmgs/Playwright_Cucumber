@@ -19,6 +19,7 @@ jobs:
     env:
       SUITE_NAME: PlaywrightCucumberTest
       TAGS: ${{ github.event.inputs.tags || '@greenkart' }}
+      BASE_URL: https://demo.guru99.com/test/newtours/
 
     steps:
       - name: Checkout repository
