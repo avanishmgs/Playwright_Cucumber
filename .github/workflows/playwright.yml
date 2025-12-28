@@ -39,7 +39,7 @@ jobs:
         run: |
           echo "Running Suite: $SUITE_NAME"
           echo "Running Tags: $TAGS"
-          npx cucumber-js \
+          xvfb-run --auto-servernum npx cucumber-js \
             --tags "$TAGS" \
             src/test/features
 
