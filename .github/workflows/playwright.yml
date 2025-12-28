@@ -19,6 +19,8 @@ jobs:
     env:
       TAGS: ${{ github.event.inputs.tags || '@greenkart' }}
       BASE_URL: ${{ secrets.BASE_URL }}
+      USERNAME: ${{ secrets.USERNAME }}
+      PASSWORD: ${{ secrets.PASSWORD }}
       CI: true
 
     steps:
