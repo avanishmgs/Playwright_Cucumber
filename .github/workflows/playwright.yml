@@ -17,9 +17,9 @@ jobs:
     runs-on: ubuntu-latest
 
     env:
-      SUITE_NAME: PlaywrightCucumberTest
       TAGS: ${{ github.event.inputs.tags || '@greenkart' }}
       BASE_URL: ${{ secrets.BASE_URL }}
+      CI: true
 
     steps:
       - name: Checkout repository
@@ -36,17 +36,14 @@ jobs:
       - name: Install Playwright browsers
         run: npx playwright install --with-deps
 
-      - name: Run Cucumber Tests by Tags
+      - name: Run Cucumber Tests
         run: |
-          echo "Running Suite: $SUITE_NAME"
-          echo "Running Tags: $TAGS"
-          xvfb-run --auto-servernum npx cucumber-js \
-            --tags "$TAGS" \
-            src/test/features
+          echo "Running TAGS: $TAGS"
+          xvfb-run --auto-servernum npm run test
 
       - name: Upload Cucumber Report
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: ${{ env.SUITE_NAME }}-Report
+          name: cucumber-report
           path: test-result/
